@@ -1,13 +1,55 @@
 import express from 'express'
 import asyncHandler from 'express-async-handler'
+import mongoose from 'mongoose'
 import { Challenge } from '../models/index.js'
 import { authenticateToken } from './auth.js'
 
 const router = express.Router()
 
+const fallbackChallenges = [
+  {
+    id: 'challenge_1',
+    title: 'Even Number Finder',
+    description: 'Write a program that prints all even numbers from 1 to 20.',
+    language: 'Python',
+    starterCode: 'for number in range(1, 21):\n    # Print only even numbers\n    pass',
+    testCases: '[{"input":"1-20","expected":"2 4 6 8 10 12 14 16 18 20"}]',
+    difficulty: 'Beginner',
+    tags: ['loops', 'conditionals']
+  },
+  {
+    id: 'challenge_2',
+    title: 'Score Badge',
+    description: 'Create a function that returns Bronze, Silver, or Gold based on a point score.',
+    language: 'JavaScript',
+    starterCode: 'function badgeForScore(points) {\n  // return "Bronze", "Silver", or "Gold"\n}',
+    testCases: '[{"input":"35","expected":"Bronze"},{"input":"75","expected":"Silver"},{"input":"120","expected":"Gold"}]',
+    difficulty: 'Intermediate',
+    tags: ['functions', 'conditionals']
+  }
+]
+
+const isDatabaseConnected = () => mongoose.connection.readyState === 1
+
+const getFallbackChallenges = ({ language, difficulty, tags, limit = 50, offset = 0 }) => {
+  const normalizedOffset = Number.parseInt(offset, 10) || 0
+  const normalizedLimit = Number.parseInt(limit, 10) || 50
+  const tagList = tags ? tags.split(',') : []
+
+  return fallbackChallenges
+    .filter(challenge => !language || challenge.language === language)
+    .filter(challenge => !difficulty || challenge.difficulty === difficulty)
+    .filter(challenge => tagList.length === 0 || tagList.some(tag => challenge.tags.includes(tag)))
+    .slice(normalizedOffset, normalizedOffset + normalizedLimit)
+}
+
 // GET /api/challenges - List all challenges
 router.get('/', asyncHandler(async (req, res) => {
   const { language, difficulty, tags, limit = 50, offset = 0 } = req.query
+
+  if (!isDatabaseConnected()) {
+    return res.json(getFallbackChallenges({ language, difficulty, tags, limit, offset }))
+  }
 
   let query = {}
 
@@ -26,6 +68,16 @@ router.get('/', asyncHandler(async (req, res) => {
 
 // GET /api/challenges/:id - Get single challenge
 router.get('/:id', asyncHandler(async (req, res) => {
+  if (!isDatabaseConnected()) {
+    const challenge = fallbackChallenges.find(challenge => challenge.id === req.params.id)
+
+    if (!challenge) {
+      return res.status(404).json({ error: 'Challenge not found' })
+    }
+
+    return res.json(challenge)
+  }
+
   const challenge = await Challenge.findOne({ id: req.params.id })
     .select('-solutions') // Don't include solutions
 

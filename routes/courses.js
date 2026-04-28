@@ -8,32 +8,118 @@ const router = express.Router()
 
 const fallbackCourses = [
   {
-    id: 'course_1',
-    title: 'Python Basics',
-    description: 'Learn the fundamentals of Python programming.',
+    id: 'python-foundations',
+    title: 'Python Foundations',
+    description: 'Build confidence with variables, conditionals, loops, functions, and small programs.',
     language: 'Python',
     difficulty: 'Beginner',
     imageUrl: null,
     modules: [
       {
-        id: 'module_1',
-        title: 'Introduction to Python',
-        description: 'Get started with Python basics',
+        id: 'python-module-1',
+        title: 'Getting Started',
+        description: 'Write your first Python programs and understand how data moves through code.',
         lessons: [
-          { id: 'lesson_1', title: 'Variables and Data Types', content: 'Lesson content here', type: 'text', isCompleted: false },
-          { id: 'lesson_2', title: 'Control Structures', content: 'Lesson content here', type: 'text', isCompleted: false }
+          {
+            id: 'python-lesson-1',
+            title: 'Variables and Data Types',
+            content: 'Variables store values so you can reuse them. Try creating name = "Ava", age = 12, and is_learning = True, then print each value.',
+            type: 'text',
+            isCompleted: false
+          },
+          {
+            id: 'python-lesson-2',
+            title: 'Conditionals',
+            content: 'Conditionals let programs make decisions. Use if, elif, and else to show a different message based on a quiz score.',
+            type: 'code',
+            isCompleted: false
+          }
+        ]
+      },
+      {
+        id: 'python-module-2',
+        title: 'Loops and Functions',
+        description: 'Use repetition and reusable blocks to solve bigger problems.',
+        lessons: [
+          {
+            id: 'python-lesson-3',
+            title: 'For Loops',
+            content: 'A for loop repeats work over a sequence. Print the numbers 1 through 10, then update the loop to print only even numbers.',
+            type: 'code',
+            isCompleted: false
+          },
+          {
+            id: 'python-lesson-4',
+            title: 'Writing Functions',
+            content: 'Functions group steps behind a name. Create a function called calculate_points that returns 10 points for each completed lesson.',
+            type: 'code',
+            isCompleted: false
+          }
         ]
       }
     ]
   },
   {
-    id: 'course_2',
-    title: 'Advanced JavaScript',
-    description: 'Dive deep into JavaScript concepts.',
+    id: 'javascript-web-starter',
+    title: 'JavaScript Web Starter',
+    description: 'Learn how JavaScript powers interactive web pages with events, arrays, and DOM updates.',
     language: 'JavaScript',
+    difficulty: 'Beginner',
+    imageUrl: null,
+    modules: [
+      {
+        id: 'js-module-1',
+        title: 'Interactive Pages',
+        description: 'Connect JavaScript to buttons, lists, and page content.',
+        lessons: [
+          {
+            id: 'js-lesson-1',
+            title: 'Variables in JavaScript',
+            content: 'Use let and const to store values. Build a simple points counter with const lessonName and let points.',
+            type: 'text',
+            isCompleted: false
+          },
+          {
+            id: 'js-lesson-2',
+            title: 'Button Clicks',
+            content: 'Use addEventListener to respond when a user clicks a button. Change a heading from "Ready" to "Lesson complete".',
+            type: 'code',
+            isCompleted: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'algebra-with-code',
+    title: 'Algebra With Code',
+    description: 'Practice algebra concepts by turning formulas and patterns into small programs.',
+    language: 'Python',
     difficulty: 'Intermediate',
     imageUrl: null,
-    modules: []
+    modules: [
+      {
+        id: 'algebra-module-1',
+        title: 'Patterns and Equations',
+        description: 'Use code to explore sequences, variables, and simple equations.',
+        lessons: [
+          {
+            id: 'algebra-lesson-1',
+            title: 'Number Patterns',
+            content: 'Generate arithmetic sequences with code. Start at 3, add 4 each time, and print the first 8 terms.',
+            type: 'code',
+            isCompleted: false
+          },
+          {
+            id: 'algebra-lesson-2',
+            title: 'Solving for x',
+            content: 'Represent equations as code. If 3x + 4 = 19, use Python to test values for x until the equation is true.',
+            type: 'code',
+            isCompleted: false
+          }
+        ]
+      }
+    ]
   }
 ]
 
