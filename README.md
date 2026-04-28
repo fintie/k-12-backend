@@ -2,14 +2,31 @@
 
 Backend API for the K-12 tutoring platform. Provides endpoints for user authentication, course management, lessons, challenges, and community features.
 
+## 🚀 Quick Deploy
+
+**Deploy to Render (Recommended for iOS app integration):**
+```bash
+npm run deploy:render
+```
+Then follow the instructions to deploy via Render dashboard.
+
+**Alternative: Railway deployment:**
+```bash
+npm run deploy
+```
+
+**Note:** GitHub Pages only supports static websites and cannot run Node.js applications. Use Render or Railway for backend deployment.
+
 ## Features
 
-- **Authentication**: User login and registration
-- **User Management**: Profile management and preferences
-- **Courses**: Browse and enroll in courses
-- **Lessons**: Access lesson content and track completion
-- **Challenges**: Programming challenges with code submission
-- **Community**: Social feed for posts, comments, and likes
+- **Authentication**: JWT tokens with bcrypt password hashing
+- **Database**: MongoDB with Mongoose ODM
+- **Validation**: express-validator on all endpoints
+- **User Management**: Complete profiles with achievements and progress
+- **Courses**: Enrollment, progress tracking, and lesson completion
+- **Challenges**: Code submission with testing simulation
+- **Community**: Posts, comments, and likes
+- **Deployment**: Docker, Railway, Render, and PM2 ready
 
 ## API Endpoints
 
@@ -46,7 +63,8 @@ Backend API for the K-12 tutoring platform. Provides endpoints for user authenti
 ## Setup
 
 ### Prerequisites
-- Node.js 16+ 
+- Node.js 16+
+- MongoDB (local installation or MongoDB Atlas)
 - npm or yarn
 
 ### Installation
@@ -61,12 +79,33 @@ cd k-12-backend
 npm install
 ```
 
-3. Create `.env` file:
+3. Set up MongoDB:
+   - Install MongoDB locally, or
+   - Create a free cluster on [MongoDB Atlas](https://www.mongodb.com/atlas)
+
+4. Create `.env` file:
 ```bash
 cp .env.example .env
 ```
 
-4. Update `.env` with your configuration
+5. Update `.env` with your configuration:
+```env
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/k12-tutor
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+```
+
+### Database Setup
+
+1. Start MongoDB (if running locally):
+```bash
+mongod
+```
+
+2. Seed the database with sample data:
+```bash
+npm run seed
+```
 
 ### Running the Server
 
@@ -81,6 +120,17 @@ npm start
 ```
 
 Server will run on `http://localhost:5000`
+
+## Features Implemented ✅
+
+- **Database Integration**: MongoDB with Mongoose ODM
+- **Authentication**: JWT tokens with bcrypt password hashing
+- **Input Validation**: express-validator middleware on all endpoints
+- **User Management**: Complete user profiles with preferences and achievements
+- **Course System**: Enrollment, progress tracking, and lesson completion
+- **Challenge Platform**: Code submission with simulated testing
+- **Community Features**: Posts, comments, and likes
+- **Error Handling**: Comprehensive error responses and logging
 
 ## Testing
 
@@ -114,20 +164,74 @@ k-12-backend/
 └── package.json     # Dependencies
 ```
 
-## TODO: Database Integration
+## Deployment
 
-This is currently a mock backend with in-memory data. To productionize:
+### Render Deployment (Recommended for iOS App Integration)
 
-1. Set up MongoDB or PostgreSQL database
-2. Create proper data models using Mongoose or TypeORM
-3. Implement JWT authentication middleware
-4. Add input validation
-5. Implement user authentication with bcrypt
-6. Add error handling and logging
-7. Create database migrations
-8. Add unit and integration tests
-9. Implement rate limiting
-10. Add CORS configuration
+1. **Push your code to GitHub** (if not already done)
+
+2. **Go to [Render.com](https://render.com) and sign up/login**
+
+3. **Create a new Web Service:**
+   - Connect your GitHub repository
+   - Service Name: `k12-backend-api`
+   - Runtime: `Node`
+   - Build Command: `npm install`
+   - Start Command: `npm start`
+
+4. **Set Environment Variables:**
+   ```
+   NODE_ENV=production
+   JWT_SECRET=<run: ./generate-jwt-secret.sh>
+   DB_URI=<your-mongodb-atlas-connection-string>
+   CORS_ORIGIN=<your-ios-app-domain-or-*>
+   ```
+
+5. **Set up MongoDB Atlas:**
+   - Go to [MongoDB Atlas](https://www.mongodb.com/atlas)
+   - Create a free cluster
+   - Get your connection string
+   - Add `0.0.0.0/0` to MongoDB Atlas network access (for Render)
+
+6. **Deploy!** Render will automatically build and deploy your app.
+
+**Quick setup script:**
+```bash
+npm run deploy:render
+```
+
+### Alternative: Railway Deployment
+
+```bash
+npm install -g @railway/cli
+railway login
+./deploy.sh
+```
+
+### Alternative: Docker Deployment
+
+```bash
+docker-compose up --build
+```
+
+### Manual Deployment
+
+```bash
+npm install -g pm2
+pm2 start ecosystem.config.js
+```
+
+**Note:** GitHub Pages only supports static websites and cannot run Node.js applications.
+
+## Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `PORT` | Server port | 5000 |
+| `NODE_ENV` | Environment | development |
+| `DB_URI` | MongoDB connection string | mongodb://localhost:27017/k12-tutoring |
+| `JWT_SECRET` | JWT signing secret | (required) |
+| `CORS_ORIGIN` | Allowed CORS origins | http://localhost:3000 |
 11. Deploy to production server
 
 ## iOS App Integration
