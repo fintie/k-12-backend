@@ -55,6 +55,73 @@ const fallbackPosts = [
       }
     ],
     codeSnippet: 'for x in range(10):\n    if 3 * x + 4 == 19:\n        print(x)'
+  },
+  {
+    id: 'post_4',
+    userId: 'community_user_6',
+    username: 'kai_swift',
+    content: 'I made my first Swift screen with a button that changes a completion message. State felt confusing yesterday, but today it clicked.',
+    postDate: new Date('2026-04-26T08:15:00.000Z'),
+    likes: ['community_user_1', 'community_user_3', 'community_user_5'],
+    comments: [
+      {
+        id: 'comment_3',
+        postId: 'post_4',
+        userId: 'community_user_7',
+        username: 'ivy_ios',
+        content: 'Nice work. The first @State moment is a big step.',
+        commentDate: new Date('2026-04-26T09:02:00.000Z')
+      }
+    ],
+    codeSnippet: '@State private var isComplete = false\n\nButton(isComplete ? "Done" : "Complete") {\n    isComplete.toggle()\n}'
+  },
+  {
+    id: 'post_5',
+    userId: 'community_user_8',
+    username: 'riley_data',
+    content: 'Data Detectives helped me find the average of my practice scores. I was surprised that one low score changed the mean so much.',
+    postDate: new Date('2026-04-25T16:40:00.000Z'),
+    likes: ['community_user_2'],
+    comments: [
+      {
+        id: 'comment_4',
+        postId: 'post_5',
+        userId: 'community_user_5',
+        username: 'nora_teacher',
+        content: 'That is a sharp observation. Outliers can tell an important story.',
+        commentDate: new Date('2026-04-25T17:12:00.000Z')
+      }
+    ],
+    codeSnippet: 'scores = [92, 88, 77, 95, 61]\naverage = sum(scores) / len(scores)\nprint(round(average, 1))'
+  },
+  {
+    id: 'post_6',
+    userId: 'community_user_9',
+    username: 'zoe_web',
+    content: 'I built a course card in HTML and CSS, then used JavaScript to update the progress text. Tiny project, huge confidence boost.',
+    postDate: new Date('2026-04-25T11:25:00.000Z'),
+    likes: ['community_user_1', 'community_user_4'],
+    comments: [],
+    codeSnippet: 'progress.textContent = "3 of 5 lessons complete";\ncard.classList.add("active");'
+  },
+  {
+    id: 'post_7',
+    userId: 'community_user_10',
+    username: 'mina_logic',
+    content: 'The even-number challenge made loops make sense. I kept thinking of the loop as checking each number one at a time.',
+    postDate: new Date('2026-04-24T18:05:00.000Z'),
+    likes: ['community_user_3', 'community_user_8'],
+    comments: [
+      {
+        id: 'comment_5',
+        postId: 'post_7',
+        userId: 'community_user_2',
+        username: 'leo_tutor',
+        content: 'Perfect mental model. Loops are careful repeaters.',
+        commentDate: new Date('2026-04-24T18:30:00.000Z')
+      }
+    ],
+    codeSnippet: 'for number in range(1, 21):\n    if number % 2 == 0:\n        print(number)'
   }
 ]
 

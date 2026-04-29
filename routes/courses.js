@@ -120,6 +120,134 @@ const fallbackCourses = [
         ]
       }
     ]
+  },
+  {
+    id: 'swift-app-starter',
+    title: 'Swift App Starter',
+    description: 'Create your first iOS-style app screens while learning Swift variables, views, and state.',
+    language: 'Swift',
+    difficulty: 'Beginner',
+    imageUrl: null,
+    modules: [
+      {
+        id: 'swift-module-1',
+        title: 'Swift Basics',
+        description: 'Learn the Swift building blocks that power simple apps.',
+        lessons: [
+          {
+            id: 'swift-lesson-1',
+            title: 'Constants and Variables',
+            content: 'Use let for values that stay the same and var for values that change. Create a lessonTitle constant and a score variable.',
+            type: 'text',
+            isCompleted: false
+          },
+          {
+            id: 'swift-lesson-2',
+            title: 'Simple Views',
+            content: 'Build a VStack with a title, subtitle, and button. Change the button text to match your learning goal.',
+            type: 'code',
+            isCompleted: false
+          }
+        ]
+      },
+      {
+        id: 'swift-module-2',
+        title: 'State and Interaction',
+        description: 'Make a screen respond when a learner taps a button.',
+        lessons: [
+          {
+            id: 'swift-lesson-3',
+            title: 'Using State',
+            content: 'Use @State to track whether a lesson is complete. Toggle the value when the learner taps a button.',
+            type: 'code',
+            isCompleted: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'data-detectives',
+    title: 'Data Detectives',
+    description: 'Use code to collect, sort, and interpret small data sets like a real analyst.',
+    language: 'Python',
+    difficulty: 'Intermediate',
+    imageUrl: null,
+    modules: [
+      {
+        id: 'data-module-1',
+        title: 'Lists and Averages',
+        description: 'Store data in lists and calculate useful summaries.',
+        lessons: [
+          {
+            id: 'data-lesson-1',
+            title: 'Working With Lists',
+            content: 'Create a list of quiz scores, print the highest score, and count how many scores are above 80.',
+            type: 'code',
+            isCompleted: false
+          },
+          {
+            id: 'data-lesson-2',
+            title: 'Mean, Min, and Max',
+            content: 'Use sum, len, min, and max to summarize data. Explain what each number tells you about the class.',
+            type: 'code',
+            isCompleted: false
+          }
+        ]
+      },
+      {
+        id: 'data-module-2',
+        title: 'Finding Patterns',
+        description: 'Use loops and conditions to spot trends in data.',
+        lessons: [
+          {
+            id: 'data-lesson-3',
+            title: 'Trend Flags',
+            content: 'Loop through daily step counts and print a message when a day beats the weekly average.',
+            type: 'code',
+            isCompleted: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'creative-web-lab',
+    title: 'Creative Web Lab',
+    description: 'Design interactive browser projects with HTML, CSS, and JavaScript.',
+    language: 'HTML/CSS/JavaScript',
+    difficulty: 'Beginner',
+    imageUrl: null,
+    modules: [
+      {
+        id: 'web-module-1',
+        title: 'Build a Learning Card',
+        description: 'Create a polished card that presents a topic, progress, and action button.',
+        lessons: [
+          {
+            id: 'web-lesson-1',
+            title: 'HTML Structure',
+            content: 'Use semantic HTML to build a card with a heading, description, tag, and button.',
+            type: 'text',
+            isCompleted: false
+          },
+          {
+            id: 'web-lesson-2',
+            title: 'CSS Styling',
+            content: 'Add spacing, color, border radius, and hover states so the card feels interactive.',
+            type: 'code',
+            isCompleted: false
+          },
+          {
+            id: 'web-lesson-3',
+            title: 'JavaScript Progress',
+            content: 'Use JavaScript to update a progress label when the learner clicks the button.',
+            type: 'code',
+            isCompleted: false
+          }
+        ]
+      }
+    ]
   }
 ]
 
